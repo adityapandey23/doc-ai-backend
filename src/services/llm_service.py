@@ -37,9 +37,11 @@ async def generate_response(query: str, qdrant_client: AsyncQdrantClient, qdrant
     
     messages = [
         SystemMessage(content=(
-            "You are an AI assistant for a law firm. Answer the user's question based ONLY on the following context. "
-            "If you cannot answer the question from the context, explicitly state that you cannot.\n\n"
-            f"Context:\n{context}"
+            "You are a helpful AI knowledge assistant. You will be provided with excerpts from documents. "
+            "Please answer the user's question explicitly using the information found in these excerpts. "
+            "If the user asks for a summary of the document, summarize the provided excerpts. "
+            "If the excerpts do not contain the answer, explicitly state that you cannot answer based on the provided context.\n\n"
+            f"Document Excerpts:\n{context}"
         ))
     ]
     

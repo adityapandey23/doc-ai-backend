@@ -56,9 +56,11 @@ async def process_and_store_pdf(file: UploadFile, qdrant_client: AsyncQdrantClie
             id=str(uuid.uuid4()),
             vector=embedding,
             payload={
-                "text": chunk,
-                "file_id": file_id,
-                "qdrant_collection_name": qdrant_collection_name
+                "page_content": chunk,
+                "metadata": {
+                    "file_id": file_id,
+                    "qdrant_collection_name": qdrant_collection_name
+                }
             }
         )
         points.append(point)
